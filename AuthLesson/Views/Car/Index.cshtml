@@ -1,0 +1,47 @@
+﻿@model IEnumerable<AuthLesson.Models.Car>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Добавить новую машину", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Wheel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoorCount)
+        </th>
+        <th>
+            <label>User</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var car in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => car.Wheel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => car.DoorCount)
+        </td>
+        <td>
+            @foreach (var user in ViewBag.Users)
+            {
+                if (user.Id==car.ApplicationUserId)
+                {
+                    @user;
+                    break;
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>
